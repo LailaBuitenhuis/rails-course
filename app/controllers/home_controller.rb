@@ -1,8 +1,20 @@
 class HomeController < ApplicationController
- before_filter :authenticate_user!
- user_signed_in?
- current_user
- user_session
-   def index
+  
+  def index
+    @username = params[:username]
+    @password = params[:password]
   end
+  
+  def show
+    
+  end
+  
+  def destroy
+    
+  end
+  
+  def new_feedback
+    @feedback_message = FeedbackMessage.new
+  end
+   
 end

@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Blog</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body style="background-color: #EEEEEE;">
+  <head>
+    <title>Blog</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-  <p> Huidige taal: <%=I18n.locate %> </p>
-  <%= link_to "Engels" %>
-  <%= link_to "Nederlands" %>
+    <p>Huidige taal: <%= I18n.locale %></p>
+    
+    <%= link_to "Engels" %>
+    <%= link_to "Nederlands" %>
+     
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    
+    
+    <% if current_user  %>
+    
+      <%= link_to t("logout"), destroy_user_session_path, :method => :delete %>
+    
+    <% end -%>
+    
+    <%= link_to "Feedback", new_feedback_message_path  %>
+    
+    <%= yield %>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-<% if current_user %> U bent ingelogd
-  <%= link_to t("logout"), destroy_user_session_path, :method => :delete  %>
-<%  end -%>
-<%= yield %>
-
-</body>
+  </body>
 </html>
